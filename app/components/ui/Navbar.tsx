@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-[60] transition-all duration-500 ease-out-expo",
+        "fixed inset-x-0 top-0 z-[60] max-w-full overflow-x-clip transition-all duration-500 ease-out-expo",
         hidden && !menuOpen ? "-translate-y-full" : "translate-y-0",
         solid
           ? "border-b border-ink-900/5 bg-cream-50/85 backdrop-blur-xl shadow-soft"

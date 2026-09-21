@@ -42,7 +42,7 @@ export default function AboutPage() {
       <section className="section bg-cream-wash">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal variant="left">
-            <div className="relative">
+            <div className="relative overflow-hidden rounded-[2rem]">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-cream-100 shadow-lift">
                 <SafeImage
                   src={images.gurudev}
@@ -52,7 +52,7 @@ export default function AboutPage() {
                   className="object-cover object-center"
                 />
               </div>
-              <div className="absolute -bottom-7 -right-4 max-w-[15rem] rounded-2xl bg-saffron-600 p-6 text-white shadow-glow sm:-right-7">
+              <div className="absolute bottom-4 right-4 max-w-[15rem] rounded-2xl bg-saffron-600 p-5 text-white shadow-glow sm:-bottom-7 sm:-right-7 sm:p-6">
                 <span className="block font-display text-3xl">1 Aug {site.founded}</span>
                 <span className="mt-1 block text-xs uppercase tracking-[0.16em] text-saffron-100">
                   The day it all began

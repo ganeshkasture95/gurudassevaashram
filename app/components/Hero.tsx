@@ -74,7 +74,7 @@ export default function Hero() {
             {site.tagline}
           </span>
 
-          <h1 className="mt-7 font-display text-[2.7rem] leading-[1.02] text-white sm:text-6xl lg:text-[5.2rem]">
+          <h1 className="mt-7 max-w-full font-display text-[2.25rem] leading-[1.05] text-white sm:text-6xl lg:text-[5.2rem]">
             {headline.map((word, index) => (
               <span key={word} className="inline-block overflow-hidden pb-1 pr-[0.28em] align-bottom">
                 <span

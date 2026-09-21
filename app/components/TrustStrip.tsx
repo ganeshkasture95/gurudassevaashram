@@ -15,13 +15,14 @@ export default function TrustStrip() {
 
   return (
     <section
-      className="relative overflow-hidden border-y border-ink-900/5 bg-cream-50 py-4"
+      className="relative max-w-full overflow-x-clip border-y border-ink-900/5 bg-cream-50 py-4"
       aria-label="Trust indicators"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-cream-50 to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-cream-50 to-transparent" />
 
-      <div className="flex w-max animate-marquee">
+      <div className="overflow-x-clip">
+      <div className="flex w-max max-w-none animate-marquee will-change-transform">
         {loop.map((item, index) => (
           <span
             key={`${item.text}-${index}`}
@@ -31,6 +32,7 @@ export default function TrustStrip() {
             {item.text}
           </span>
         ))}
+      </div>
       </div>
     </section>
   );

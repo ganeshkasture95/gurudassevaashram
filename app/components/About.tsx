@@ -51,7 +51,7 @@ export default function About() {
                   variant={flipped ? "right" : "left"}
                   className={flipped ? "md:order-2" : undefined}
                 >
-                  <figure className="group relative">
+                  <figure className="group relative overflow-hidden rounded-[2rem]">
                     <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
                       <SafeImage
                         src={chapter.image}
@@ -65,7 +65,7 @@ export default function About() {
                       {chapter.caption}
                     </figcaption>
                     <span
-                      className="absolute -right-3 -top-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-saffron-600 font-display text-lg text-white shadow-glow"
+                      className="absolute right-3 top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-saffron-600 font-display text-base text-white shadow-glow md:-right-3 md:-top-3 md:h-14 md:w-14 md:text-lg"
                       aria-hidden
                     >
                       0{index + 1}

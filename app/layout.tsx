@@ -50,8 +50,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${display.variable} ${sans.variable} font-sans antialiased`}>
+    <html lang="en" className="scroll-smooth overflow-x-clip">
+      <body
+        className={`${display.variable} ${sans.variable} overflow-x-clip font-sans antialiased`}
+      >
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink-900 focus:px-5 focus:py-2 focus:text-sm focus:text-white"
@@ -60,7 +62,9 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <Navbar />
-        <main id="main">{children}</main>
+        <main id="main" className="overflow-x-clip">
+          {children}
+        </main>
         <Footer />
         <StickyDonate />
         <BackToTop />

@@ -15,12 +15,23 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
     @apply bg-cream-50 text-ink-700 font-sans antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Prevent horizontal scroll from off-screen reveal transforms on small screens */
+  @media (max-width: 767px) {
+    .reveal-left,
+    .reveal-right {
+      transform: translate3d(0, 36px, 0);
+    }
   }
 
   h1,
@@ -56,7 +67,7 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full min-w-0 max-w-7xl px-5 sm:px-8 lg:px-12;
   }
 
   .section {
