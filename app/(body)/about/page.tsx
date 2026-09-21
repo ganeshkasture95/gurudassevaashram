@@ -1,123 +1,195 @@
-import Image from "next/image";
+import DonateCta from "@/app/components/DonateCta";
+import Impact from "@/app/components/Impact";
+import PageHero from "@/app/components/ui/PageHero";
+import Reveal from "@/app/components/ui/Reveal";
+import SafeImage from "@/app/components/ui/SafeImage";
+import SectionHeading from "@/app/components/ui/SectionHeading";
+import { images, milestones, site } from "@/lib/site";
+import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
 
-export default function History() {
-    const milestones = [
-        {
-            year: "1985",
-            title: "Establishment of Gurudas Seva Ashram",
-            description: "Founded under the inspiration of Rashtrasant Tukdoji Maharaj, the ashram was established by P.P. Shri Gurudev Maharaj with a vision of spiritual and social transformation.",
-            image: "/assets/ashram15.jpg",
-        },
-        {
-            year: "1986",
-            title: "Land Contribution & Afforestation",
-            description: "A generous donation of 14 acres of land by Gurudev Maharaj laid the foundation of the ashram. The barren land was transformed into a lush, serene environment through relentless efforts.",
-            image: "/assets/ashram15.jpg",
-        },
-        {
-            year: "1990",
-            title: "Hostel for Underprivileged Students",
-            description: "A hostel was built to support students from marginalized communities, focusing on education, personality development, and self-reliance.",
-            image: "/assets/ashram15.jpg",
-        },
-        {
-            year: "2000",
-            title: "Launch of Gurudas Old Age Home",
-            description: "An old age home was established to provide care, comfort, and a family-like environment for the elderly.",
-            image: "/assets/ashram15.jpg",
-        },
-        {
-            year: "2010",
-            title: "Women Empowerment Programs",
-            description: "Vocational training and self-help groups were introduced to empower women and promote financial independence.",
-            image: "/assets/ashram15.jpg",
-        },
-        {
-            year: "2020",
-            title: "Environmental Initiatives",
-            description: "Tree plantation drives and cleanliness campaigns were launched to create a sustainable and eco-friendly environment.",
-            image: "/assets/ashram15.jpg",
-        },
-    ];
+export const metadata: Metadata = {
+  title: "Our history",
+  description: `The story of ${site.name} — founded in ${site.founded} on fourteen acres of barren land in Ghatnandur, Beed.`,
+};
 
-    return (
-        <div className="bg-gray-50 py-12 px-6 md:px-16">
-            {/* Header Section */}
-            <div className="max-w-7xl mx-auto text-center mb-12">
-                <h1 className="text-4xl font-bold text-black mb-4">Our History</h1>
-                <p className="text-gray-700 text-lg">
-                    Discover the journey of Gurudas Seva Ashram, from its humble beginnings to becoming a beacon of hope and service for the community.
-                </p>
+const principles = [
+  {
+    title: "Holistic development",
+    body: "Education alone is not enough. We work on health, confidence, character and skill together, so a young person leaves here able to stand on their own.",
+  },
+  {
+    title: "Community first",
+    body: "Nothing here was built by outsiders. Villagers gave land, labour and grain, and they still decide what the ashram takes on next.",
+  },
+  {
+    title: "Self-reliance",
+    body: "Following the Gramgeeta, our aim is never permanent dependence. Every programme is designed to end with a person who no longer needs it.",
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="About us"
+        title="Fourteen acres, forty years, one idea"
+        description={`${site.name} was founded on 1 August ${site.founded} under the inspiration of Rashtrasant Tukdoji Maharaj. This is how it grew.`}
+        image={images.founding}
+      />
+
+      {/* Origin */}
+      <section className="section bg-cream-wash">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <Reveal variant="left">
+            <div className="relative">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-cream-100 shadow-lift">
+                <SafeImage
+                  src={images.gurudev}
+                  alt="The shrine of Shri Sant Gurudev Maharaj, founder of the ashram"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
+              </div>
+              <div className="absolute -bottom-7 -right-4 max-w-[15rem] rounded-2xl bg-saffron-600 p-6 text-white shadow-glow sm:-right-7">
+                <span className="block font-display text-3xl">1 Aug {site.founded}</span>
+                <span className="mt-1 block text-xs uppercase tracking-[0.16em] text-saffron-100">
+                  The day it all began
+                </span>
+              </div>
             </div>
+          </Reveal>
 
-            {/* Beginning Section */}
-            <section className="max-w-7xl mx-auto mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <Image src="/assets/ashram15.jpg" alt="Vision for Social Transformation" className="rounded-lg shadow-lg"  width={1000} height={1000}/>
-                </div>
-                <div>
-                    <h2 className="text-3xl font-bold text-black mb-4">The Beginning: A Vision for Social Transformation</h2>
-                    <p className="text-gray-700 leading-relaxed">
-                        Gurudas Seva Ashram was founded on August 1, 1985, under the inspiration of Rashtrasant Tukdoji Maharaj. P.P. Shri Gurudev Maharaj dedicated himself to social and spiritual welfare, transforming barren land into a lush haven for community development.
-                    </p>
-                </div>
-            </section>
-
-            {/* Founding Philosophy */}
-            <section className="max-w-7xl mx-auto mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 className="text-3xl font-bold text-black mb-4">The Founding Philosophy</h2>
-                    <p className="text-gray-700 leading-relaxed">
-                        Inspired by the teachings of Rashtrasant Tukdoji Maharaj, the ashram was built on the principles of:
-                    </p>
-                    <ul className="list-disc list-inside text-gray-700 mt-4">
-                        <li>Holistic development of individuals</li>
-                        <li>Community-driven initiatives</li>
-                        <li>Promoting self-reliance and education</li>
-                    </ul>
-                    <p className="text-gray-700 mt-4">
-                        The ashram emphasizes the message of the "Gramgeeta," focusing on village empowerment, unity, and self-sufficiency.
-                    </p>
-                </div>
-                <div>
-                    <Image src="/assets/ashram15.jpg" alt="Founding Philosophy" className="rounded-lg shadow-lg" width={1000} height={1000} />
-                </div>
-            </section>
-
-            {/* Timeline */}
-            <section className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold text-black text-center mb-8">Journey of Service (1985 - Present)</h2>
-                <div className="space-y-12">
-                    {milestones.map((milestone, index) => (
-                        <div
-                            key={index}
-                            className={`flex flex-col md:flex-row items-center gap-8 ${
-                                index % 2 === 0 ? "md:flex-row-reverse" : ""
-                            }`}
-                        >
-                            <div className="w-full md:w-1/2">
-                                <Image src={milestone.image} alt={milestone.title} className="rounded-lg shadow-lg"  width={1000} height={1000}/>
-                            </div>
-                            <div className="w-full md:w-1/2 text-center md:text-left">
-                                <h3 className="text-2xl font-semibold text-black mb-2">{milestone.year}</h3>
-                                <h4 className="text-xl font-bold text-gray-800 mb-4">{milestone.title}</h4>
-                                <p className="text-gray-700">{milestone.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Legacy Section */}
-            <section className="max-w-7xl mx-auto mt-16 text-center">
-                <h2 className="text-3xl font-bold text-black mb-4">Legacy of Service</h2>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                    Today, Gurudas Seva Ashram stands as a symbol of compassion, service, and dedication. It continues to inspire marginalized communities and individuals, echoing the timeless values of Rashtrasant Tukdoji Maharaj and the vision of its founder, P.P. Shri Gurudev Maharaj.
-                </p>
-                <div className="mt-8">
-                    <Image src="/assets/ashram15.jpg" alt="Legacy of Service" className="rounded-lg shadow-lg mx-auto"  width={1000} height={1000}/>
-                </div>
-            </section>
+          <Reveal variant="right" delay={100}>
+            <SectionHeading
+              align="left"
+              eyebrow="The founder"
+              title="P.P. Shri Gurudev Maharaj"
+              description="A disciple of Rashtrasant Tukdoji Maharaj who gave away what he had — including fourteen acres of his own land — to build something that would outlast him."
+            />
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-ink-500">
+              <p>
+                The land he chose was dry and treeless. For years, residents and villagers carried
+                water by hand, planted saplings and lost many of them, and planted again. The shaded
+                campus you can walk through today is the result of that stubbornness.
+              </p>
+              <p>
+                He refused to run the ashram as a charity that keeps people dependent. Students were
+                expected to study and to work; elders were given responsibility, not just care; women
+                were trained to earn rather than to receive. That principle still governs the place.
+              </p>
+            </div>
+          </Reveal>
         </div>
-    );
+      </section>
+
+      {/* Principles */}
+      <section className="section bg-cream-100">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="What we stand on"
+            title="Three principles, borrowed from the Gramgeeta"
+            description="Rashtrasant Tukdoji Maharaj's message of village self-sufficiency, unity and dignity shapes how every programme here is designed."
+          />
+
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            {principles.map((item, index) => (
+              <Reveal key={item.title} delay={index * 110} variant="blur">
+                <article className="card-hover group h-full p-8">
+                  <span
+                    className="font-display text-5xl text-saffron-200 transition-colors duration-500 group-hover:text-saffron-400"
+                    aria-hidden
+                  >
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-5 text-xl">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-ink-500">{item.body}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="section bg-cream-50">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Journey of service"
+            title={`${site.founded} to the present day`}
+            description="Each step began the same way — someone needed something that did not exist yet."
+          />
+
+          <ol className="relative mx-auto mt-16 max-w-3xl">
+            <span
+              className="absolute left-[1.15rem] top-2 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-saffron-400 via-saffron-200 to-transparent md:left-1/2"
+              aria-hidden
+            />
+
+            {milestones.map((milestone, index) => {
+              const onLeft = index % 2 === 0;
+              return (
+                <Reveal
+                  key={milestone.year}
+                  as="li"
+                  variant={onLeft ? "left" : "right"}
+                  delay={60}
+                  className={cn(
+                    "relative pb-12 pl-14 md:w-1/2 md:pl-0",
+                    onLeft ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "absolute left-0 top-1.5 flex h-9 w-9 items-center justify-center rounded-full border-2 border-saffron-400 bg-cream-50",
+                      onLeft ? "md:left-auto md:right-[-1.15rem]" : "md:left-[-1.15rem]",
+                    )}
+                    aria-hidden
+                  >
+                    <span className="h-2.5 w-2.5 rounded-full bg-saffron-500" />
+                  </span>
+
+                  <div className={cn("card p-7", onLeft && "md:text-right")}>
+                    <span className="eyebrow">{milestone.year}</span>
+                    <h3 className="mt-2.5 text-xl">{milestone.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                      {milestone.description}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
+      <Impact />
+
+      {/* Legacy */}
+      <section className="section bg-cream-wash">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Legacy"
+            title="Still running on the habits he set"
+            description="Gurudev Maharaj is gone, but the kitchen still opens at five, the study hall still fills at seven, and the gate is still open to anyone who needs it."
+          />
+          <Reveal variant="zoom" className="mt-14">
+            <div className="relative aspect-[21/9] overflow-hidden rounded-[2rem] shadow-lift">
+              <SafeImage
+                src={images.campus}
+                alt="The ashram campus today"
+                fill
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <DonateCta />
+    </>
+  );
 }

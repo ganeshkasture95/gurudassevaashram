@@ -1,24 +1,23 @@
-import About from "./components/About"
-import DonateUs from "./components/Bottom"
-import AshramInfo from "./components/Gal"
-import Hero from "./components/Hero"
-import Services from "./components/Services"
+import About from "./components/About";
+import DonateCta from "./components/DonateCta";
+import Events from "./components/Events";
+import Hero from "./components/Hero";
+import Impact from "./components/Impact";
+import Services from "./components/Services";
+import Testimonials from "./components/Testimonials";
+import TrustStrip from "./components/TrustStrip";
 
-
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <div className=" relative min-h-screen w-screen overflow-x-hidden">
-      {/* <Navbar/> */}
-      <Hero/>
-      <About/>
-      {/* <History/> */}
-      <Services/>
-      <AshramInfo/>
-      <DonateUs/>
-      {/* <DonateUs/> */}
-      {/* <Footer/> */}
-    </div>
-  )
+    <>
+      <Hero />
+      <TrustStrip />
+      <About />
+      <Services />
+      <Impact />
+      <Events />
+      <Testimonials />
+      <DonateCta />
+    </>
+  );
 }
-
-export default HomePage

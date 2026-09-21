@@ -1,156 +1,118 @@
-"use client";
-
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+import { images, site } from "@/lib/site";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import Reveal from "./ui/Reveal";
+import SafeImage from "./ui/SafeImage";
+import SectionHeading from "./ui/SectionHeading";
 
-gsap.registerPlugin(ScrollTrigger);
+const chapters = [
+  {
+    title: "How the ashram began",
+    image: images.founding,
+    alt: "The first hall of the ashram",
+    body: "On 1 August 1985, inspired by Rashtrasant Tukdoji Maharaj, P.P. Shri Gurudev Maharaj began this work on fourteen acres of barren land. There was no building, no funding and no guarantee — only the conviction that service to people is service to God.",
+    caption: "1985 · The first prayer hall",
+  },
+  {
+    title: "The man behind it",
+    image: images.gurudev,
+    alt: "The shrine of Shri Sant Gurudev Maharaj at the ashram",
+    body: "Gurudev Maharaj spent his life among the people he served: sitting with elders, teaching children, walking village to village against untouchability and addiction. He left behind no wealth, only an institution that still runs on the habits he set.",
+    caption: "The shrine of Shri Sant Gurudev Maharaj",
+  },
+  {
+    title: "What we do today",
+    image: images.mission,
+    alt: "Meals being served at the ashram",
+    body: "A hostel for rural students, a home for elders, livelihood training for women, a music school, and year-round health and environment work. Food, education and dignity — offered freely, to whoever needs them.",
+    caption: "Annadan, served every single day",
+  },
+];
 
-const About = () => {
-    const imageRef = useRef(null);
+export default function About() {
+  return (
+    <section className="section relative overflow-hidden bg-cream-wash">
+      <div className="container-page">
+        <SectionHeading
+          eyebrow="Our story"
+          title="Four decades of quiet, unbroken service"
+          description={`${site.name} was never meant to be an institution. It was meant to be a home — and that is still how it is run.`}
+        />
 
-    useEffect(() => {
-        gsap.to(imageRef.current, {
-            scale: 2,
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: imageRef.current,
-                start: "bottom",
-                end: "end end",
-                scrub: true,
-            },
-        });
-    }, []);
-
-    return (
-        <div className="bg-gradient-to-b overflow-hidden from-gray-100 to-gray-200 py-12 px-6 md:px-16">
-            <h2 className="justify-center justify-self-center text-3xl md:text-4xl font-bold text-black mb-4">
-                About Ashram's
-            </h2>
-
-            <div className="max-w-7xl mx-auto space-y-16">
-                {/* Section 1: Story of the Ashram's Founding */}
-                <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
-                    <Image
-                        src="/assets/ashram16.jpg"
-                        alt="Ashram Founding"
-                        className="w-full md:w-1/2 h-96 rounded-lg shadow-lg object-cover"
-                        width={1000}
-                        height={1000}
-                    />
-                    <div className="md:w-1/2">
-                        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-                            Story of the Ashram's Founding
-                        </h2>
-                        <p className="text-gray-900 text-lg leading-relaxed">
-                            Founded in{" "}
-                            <span className="font-semibold text-gray-700">
-                                1985
-                            </span>{" "}
-                            by the revered{" "}
-                            <span className="font-semibold text-gray-700">
-                                Gurudev Maharaj
-                            </span>
-                            , Gurudasa Seva Ashram is a sanctuary for the
-                            destitute and marginalized. Inspired by the
-                            teachings of{" "}
-                            <span className="font-semibold text-gray-700">
-                                Sant Tukdoji Maharaj
-                            </span>
-                            , it was established to provide shelter and support
-                            to the needy.
-                        </p>
+        <div className="mt-20 space-y-24 md:space-y-32">
+          {chapters.map((chapter, index) => {
+            const flipped = index % 2 === 1;
+            return (
+              <div
+                key={chapter.title}
+                className="grid items-center gap-10 md:grid-cols-2 md:gap-16"
+              >
+                <Reveal
+                  variant={flipped ? "right" : "left"}
+                  className={flipped ? "md:order-2" : undefined}
+                >
+                  <figure className="group relative">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
+                      <SafeImage
+                        src={chapter.image}
+                        alt={chapter.alt}
+                        fill
+                        className="object-cover object-center transition-transform duration-[1.2s] ease-out-expo group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink-900/50 via-transparent to-transparent" />
                     </div>
-                </div>
+                    <figcaption className="absolute bottom-5 left-5 right-5 text-xs font-medium uppercase tracking-[0.15em] text-cream-100">
+                      {chapter.caption}
+                    </figcaption>
+                    <span
+                      className="absolute -right-3 -top-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-saffron-600 font-display text-lg text-white shadow-glow"
+                      aria-hidden
+                    >
+                      0{index + 1}
+                    </span>
+                  </figure>
+                </Reveal>
 
-                {/* Section 2: History of Gurudev Maharaj */}
-                <div className="flex flex-col md:flex-row-reverse items-center space-y-8 md:space-y-0 md:space-x-8">
-                    <Image
-                        src="/assets/ashram13.jpg"
-                        alt="Gurudev Maharaj"
-                        className="w-full md:w-1/2 h-96 rounded-lg shadow-lg object-cover"
-                        width={1000}
-                        height={1000}
-                    />
-                    <div className="md:w-1/2">
-                        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-                            History of Gurudev Maharaj
-                        </h2>
-                        <p className="text-gray-900 text-lg leading-relaxed">
-                            Gurudev Maharaj, a disciple of{" "}
-                            <span className="font-semibold text-gray-700">
-                                Sant Tukdoji Maharaj
-                            </span>
-                            , dedicated his life to serving humanity and
-                            uplifting the underprivileged. His teachings
-                            emphasized kindness, compassion, and social
-                            justice, leaving behind a legacy of selflessness
-                            and community service.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Section 3: Mission of Gurudasa Seva Ashram */}
-                <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
-                    <Image
-                        src="/assets/ashram14.jpg"
-                        alt="Ashram Mission"
-                        className="w-full h-96 md:w-1/2 rounded-lg shadow-lg object-cover"
-                        width={1000}
-                        height={1000}
-                    />
-                    <div className="md:w-1/2">
-                        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-                            Mission of Gurudasa Seva Ashram
-                        </h2>
-                        <p className="text-gray-900 text-lg leading-relaxed">
-                            The ashram’s mission includes providing a safe haven
-                            for the homeless, elderly, and children. By
-                            offering{" "}
-                            <span className="font-semibold text-gray-700">
-                                food
-                            </span>
-                            ,{" "}
-                            <span className="font-semibold text-gray-700">
-                                education
-                            </span>
-                            , and{" "}
-                            <span className="font-semibold text-gray-700">
-                                vocational training
-                            </span>
-                            , the ashram empowers individuals to lead dignified
-                            lives while fostering community awareness and
-                            involvement.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Section with Animated Image */}
-                <div className="flex size-full justify-center" ref={imageRef}>
-                    <div
-                        className="w-full md:w-1/2 h-96 rounded-lg shadow-lg object-cover"
-                        style={{
-                            backgroundImage: "url('/assets/ashram14.jpg')",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                        }}
-                    />
-                </div>
-            </div>
-
-            {/* Learn More Button */}
-            <div className="mt-12 text-center">
-                <Link href="/about">
-                    <p className="bg-ter-200 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-ter-50 transition duration-300">
-                        Learn More
-                    </p>
-                </Link>
-            </div>
+                <Reveal
+                  variant={flipped ? "left" : "right"}
+                  delay={120}
+                  className={flipped ? "md:order-1" : undefined}
+                >
+                  <h3 className="text-2xl sm:text-3xl">{chapter.title}</h3>
+                  <p className="mt-5 text-base leading-relaxed text-ink-500 sm:text-lg">
+                    {chapter.body}
+                  </p>
+                </Reveal>
+              </div>
+            );
+          })}
         </div>
-    );
-};
 
-export default About;
+        <Reveal variant="zoom" className="mt-24">
+          <blockquote className="relative mx-auto max-w-4xl rounded-[2rem] border border-saffron-200/60 bg-white/70 px-8 py-12 text-center shadow-soft backdrop-blur-sm sm:px-14">
+            <span
+              className="absolute left-8 top-4 font-display text-7xl leading-none text-saffron-200"
+              aria-hidden
+            >
+              &ldquo;
+            </span>
+            <p className="relative font-display text-xl leading-relaxed text-ink-800 sm:text-2xl">
+              Service to humanity is the most divine form of worship. Let your heart be filled with
+              compassion and love for all.
+            </p>
+            <footer className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-saffron-700">
+              Rashtrasant Tukdoji Maharaj
+            </footer>
+          </blockquote>
+        </Reveal>
+
+        <Reveal className="mt-14 text-center">
+          <Link href="/about" className="btn-outline group">
+            Read our full history
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
